@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamId: 0
-  damageAmount: 1
+  damageAmount: 5
   hitEffect: {fileID: 3287935543775063484, guid: 0c321d35452b6a74e8f404768998a9aa, type: 3}
   destroyAfterDamage: 1
   dealDamageOnTriggerEnter: 1
@@ -186,4 +186,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 10
-  minAngleToRotate: 2
+  minAngleToRotate: 5
