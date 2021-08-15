@@ -45,9 +45,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4641165794769155162, guid: 5089b9cd653abda4ba6013a20e42c774, type: 3}
   projectileHolder: {fileID: 0}
+  homingMissilePrefab: {fileID: 0}
+  homingMissileHolder: {fileID: 0}
   isPlayerControlled: 0
   fireRate: 3
   projectileSpread: 1
+  homingMissileProbability: 0
+  missileSpawnRadius: 1
   fireEffect: {fileID: 6229913163069739088, guid: a499391aa95bee24ab8e999366f75fe4, type: 3}
 --- !u!1 &8282131552441171991
 GameObject:
@@ -66,7 +70,7 @@ GameObject:
   - component: {fileID: 584683058982610388}
   m_Layer: 9
   m_Name: DiagonalChasing
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,7 +306,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4641165794769155162, guid: 5089b9cd653abda4ba6013a20e42c774, type: 3}
   projectileHolder: {fileID: 0}
+  homingMissilePrefab: {fileID: 0}
+  homingMissileHolder: {fileID: 0}
   isPlayerControlled: 0
   fireRate: 3
   projectileSpread: 1
+  homingMissileProbability: 0
+  missileSpawnRadius: 1
   fireEffect: {fileID: 6229913163069739088, guid: a499391aa95bee24ab8e999366f75fe4, type: 3}
