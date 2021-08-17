@@ -49,6 +49,7 @@ public class Homing : MonoBehaviour
         var directionToMove = (enemy == null) ? transform.up : (enemy.transform.position - transform.position);
 
         var angle = Vector3.Angle(transform.up, directionToMove);
+        angle = (angle + 360) % 360;
         transform.Rotate(0, 0, Mathf.Min(angle, minAngleToRotate));
 
         // move the transform

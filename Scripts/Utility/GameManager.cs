@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -36,6 +37,19 @@ public class GameManager : MonoBehaviour
         set
         {
             instance.gameManagerScore = value;
+        }
+    }
+
+    private int gameManagerDash = 0;
+    public static int dash
+    {
+        get
+        {
+            return instance.gameManagerDash;
+        }
+        set
+        {
+            instance.gameManagerDash = value;
         }
     }
 
@@ -207,6 +221,12 @@ public class GameManager : MonoBehaviour
     {
         SaveHighScore();
         ResetScore();
+        ResetDash();
+    }
+
+    private void ResetDash()
+    {
+        dash = 0;
     }
 
     /// <summary>
@@ -225,6 +245,18 @@ public class GameManager : MonoBehaviour
         {
             SaveHighScore();
         }
+        UpdateUIElements();
+    }
+
+    public static void UseDash()
+    {
+        dash -= 1;
+        UpdateUIElements();
+    }
+
+    public static void GetDash()
+    {
+        dash += 1;
         UpdateUIElements();
     }
     

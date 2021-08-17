@@ -53,6 +53,8 @@ public class InputManager : MonoBehaviour
         firePressed = default;
         fireHeld = default;
 
+        dashPressed = default;
+
         pausePressed = default;
     }
 
@@ -96,6 +98,20 @@ public class InputManager : MonoBehaviour
     public bool firePressed;
     [Tooltip("Whether or not the fire button is being held")]
     public bool fireHeld;
+
+    public bool dashPressed;
+
+    public void ReadDashInput(InputAction.CallbackContext context)
+    {
+        dashPressed = !context.canceled;
+        StartCoroutine(ResetDashPressed());
+    }
+
+    IEnumerator ResetDashPressed()
+    {
+        yield return new WaitForEndOfFrame();
+        dashPressed = false;
+    }
 
     /// <summary>
     /// Description:

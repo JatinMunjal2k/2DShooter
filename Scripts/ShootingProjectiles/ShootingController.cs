@@ -32,12 +32,22 @@ public class ShootingController : MonoBehaviour
     public float homingMissileProbability = 0.0f;
     public float missileSpawnRadius = 1.0f;
 
+    [Header("Dash Settings")]
+    public float dashLength = 5.0f;
+    public GameObject dashEffect;
+    public float dashFireRate = 1.0f;
+    private float lastDashed = Mathf.NegativeInfinity;
+    public bool replenishDash = true;
+    public float replenishRate = 5.0f;
+    private float lastDashReplenish = Mathf.NegativeInfinity;
+
     // The last time this component was fired
     private float lastFired = Mathf.NegativeInfinity;
 
     [Header("Effects")]
     [Tooltip("The effect to create when this fires")]
     public GameObject fireEffect;
+
 
     //The input manager which manages player input
     private InputManager inputManager = null;
@@ -53,6 +63,17 @@ public class ShootingController : MonoBehaviour
     private void Update()
     {
         ProcessInput();
+        CheckDash();
+    }
+
+    private void CheckDash()
+    {
+        if ((Time.timeSinceLevelLoad - lastDashReplenish) < replenishRate) {
+            return;
+        }
+        Debug.Log("Hey!");
+        lastDashReplenish = Time.timeSinceLevelLoad;
+        GameManager.GetDash();
     }
 
     /// <summary>
@@ -103,7 +124,26 @@ public class ShootingController : MonoBehaviour
             if (inputManager.firePressed || inputManager.fireHeld) {
                 Fire();
             }
+            else if (inputManager.dashPressed && GameManager.dash > 0) {
+                Vector3 movementVector = new Vector3(inputManager.horizontalMoveAxis, inputManager.verticalMoveAxis, 0);
+                Dash(movementVector);
+            }
         }
+    }
+
+    private void Dash(Vector3 movement)
+    {
+        if ((Time.timeSinceLevelLoad - lastDashed) < dashFireRate) {
+            return;
+        }
+
+        if (dashEffect != null) {
+            Instantiate(dashEffect, transform.position, transform.rotation, null);
+        }
+
+        GameManager.UseDash();
+        lastDashed = Time.timeSinceLevelLoad;
+        transform.position = transform.position + (movement * dashLength);
     }
 
     /// <summary>
